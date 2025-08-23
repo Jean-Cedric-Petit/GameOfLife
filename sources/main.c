@@ -4,7 +4,7 @@
 #include<windows.h>
 
 #define WIDTH 120
-#define HEIGHT 30
+#define HEIGHT 40
 #define SCREEN_SIZE (WIDTH+1)*HEIGHT+1 //64 chars wide + endline char & 16 lines for STR termination.
 char screen1[SCREEN_SIZE]; 
 char screen2[SCREEN_SIZE];
@@ -48,7 +48,7 @@ int main(){
 		scrn_ptr[(start_y + 1) * (WIDTH + 1) + start_x + 1] = 219;
 	}
 	
-	for(int k = 0; k < 3*(WIDTH+HEIGHT); k++){
+	for(int k = 0; k < 8*(WIDTH+HEIGHT); k++){
         int x = rand() % WIDTH;   // 0-63
         int y = rand() % HEIGHT;  // 0-15
         buffer_ptr[y * (WIDTH + 1) + x] = 219;
@@ -73,13 +73,13 @@ int main(){
 				char current = scrn_ptr[y * (WIDTH+1) + x];
 				if(current != ' '){
 					if(neighbours == 3 || neighbours == 2 ){
-						buffer_ptr[y * (WIDTH+1) + x] = -37;		
+						buffer_ptr[y * (WIDTH+1) + x] = 219;		
 					}else{
 						buffer_ptr[y * (WIDTH+1) + x] = ' ';
 					}
 				}else{
 					if(neighbours == 3){ //Becomes alive again.
-						buffer_ptr[y * (WIDTH+1) + x] = -37;
+						buffer_ptr[y * (WIDTH+1) + x] = 219;
 					}else{
 						buffer_ptr[y * (WIDTH+1) + x] = ' ';
 					}
